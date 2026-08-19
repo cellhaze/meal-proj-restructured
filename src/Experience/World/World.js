@@ -1,33 +1,32 @@
-import Experience from '../Experience.js'
-import * as THREE from 'three'
-import Environment from './Environment.js'
-import Floor from './Floor.js'
-import Fox from './Fox.js'
+import Experience from "../Experience.js";
+import * as THREE from "three";
+import Environment from "./Environment.js";
+import Floor from "./Floor.js";
+import Fox from "./Fox.js";
 
 export default class World {
-    constructor() {
-        this.experience = new Experience()
-        this.scene = this.experience.scene
-        this.resources = this.experience.resources
+  constructor() {
+    this.experience = new Experience();
+    this.scene = this.experience.scene;
+    this.resources = this.experience.resources;
 
-        // Wait for resources
-        this.resources.on('ready', () => {
-            // Setup
-            this.floor = new Floor()
-            this.fox = new Fox()
-            this.environment = new Environment()
-        })
+    // Wait for resources
+    this.resources.on("ready", () => {
+      // Setup
+      // this.floor = new Floor();
+      // this.fox = new Fox();
+      this.environment = new Environment();
 
-        // // Test mesh
-        // const testMesh = new THREE.Mesh(
-        //     new THREE.BoxGeometry(1, 1, 1),
-        //     new THREE.MeshStandardMaterial()
-        // )
-        // this.scene.add(testMesh)
-    }
+      // New test scene
+      this.burgerScene = this.resources.items["world-burger-baked"].scene;
+      this.scene.add(this.burgerScene);
 
-    update() {
-        if (this.fox)
-            this.fox.update()
-    }
+      console.log("burger scene:", this.burgerScene);
+      console.log("scene children:", this.scene.children);
+    });
+  }
+
+  update() {
+    // if (this.fox) this.fox.update();
+  }
 }
