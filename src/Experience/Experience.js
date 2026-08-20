@@ -10,6 +10,8 @@ import Debug from './Utils/Debug'
 
 let instance = null
 
+// The 3d application 
+//This is primarily to hold the threejs content to keep it separate
 export default class Experience {
     constructor(canvas) {
         // Singleton
@@ -17,7 +19,8 @@ export default class Experience {
             return instance
         }
         instance = this
-
+        
+        // To acccess Class in console
         window.experience = this
 
         this.canvas = canvas
